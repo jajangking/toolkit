@@ -1,9 +1,6 @@
 import Link from "next/link";
-import { getDynamicQuote } from "./actions/getQuote";
 
 export default async function Home() {
-  const quote = await getDynamicQuote();
-
   const tools = [
     {
       title: "Barcode & QR",
@@ -39,23 +36,14 @@ export default async function Home() {
     <div className="py-6 md:py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         
-        {/* HERO SECTION WITH AI QUOTE */}
-        <div className="relative mb-12 md:mb-20 text-center lg:text-left animate-slide-up">
-          <div className="absolute -top-10 -left-10 w-32 h-32 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
-          
-
-
-          <div className="relative inline-block liquid-glass neo-border neo-shadow-lg p-6 md:p-8 bg-yellow-400 dark:bg-yellow-500 transform -rotate-1 max-w-2xl">
-            <div className="absolute -top-4 -left-4 bg-black text-white px-3 py-1 font-black text-xs uppercase tracking-widest neo-border">
-              AI Insight
-            </div>
-            <p className="text-lg md:text-2xl font-black text-black leading-tight italic uppercase">
-              "{quote}"
-            </p>
-            <div className="mt-4 flex justify-end">
-               <span className="text-[10px] font-black uppercase tracking-tighter text-black/60">Powered by Groq AI</span>
-            </div>
-          </div>
+        {/* HERO SECTION */}
+        <div className="mb-12 md:mb-20 text-center lg:text-left animate-slide-up">
+          <h2 className="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-none mb-4 dark:text-white text-black">
+            SIMPLE.<br/>CEPET.<br/>BERANI.
+          </h2>
+          <p className="text-xl md:text-2xl font-bold uppercase italic dark:text-gray-400 text-gray-600">
+            Kumpulan tool digital biar kerjaan lo makin sat-set.
+          </p>
         </div>
 
         {/* TOOL GRID */}
