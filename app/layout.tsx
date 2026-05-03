@@ -27,8 +27,9 @@ export default function RootLayout({
             </Link>
             
             <div className="flex items-center space-x-4">
-              <Link href="/" className="px-4 py-2 font-bold text-black hover:bg-black hover:text-white transition-colors neo-border bg-white neo-shadow hidden sm:block">Beranda</Link>
-              <Link href="/barcode" className="px-4 py-2 font-bold text-black hover:bg-black hover:text-white transition-colors neo-border bg-cyan-400 neo-shadow">Barcode</Link>
+              <Link href="/" className="px-3 py-1.5 md:px-4 md:py-2 font-bold text-black hover:bg-black hover:text-white transition-colors neo-border bg-white neo-shadow hidden sm:block text-sm">Beranda</Link>
+              <Link href="/barcode" className="px-3 py-1.5 md:px-4 md:py-2 font-bold text-black hover:bg-black hover:text-white transition-colors neo-border bg-cyan-400 neo-shadow text-sm">Barcode</Link>
+              <Link href="/scanner" className="px-3 py-1.5 md:px-4 md:py-2 font-bold text-black hover:bg-black hover:text-white transition-colors neo-border bg-purple-400 neo-shadow text-sm">Scanner</Link>
             </div>
           </nav>
         </header>
