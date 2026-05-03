@@ -3,7 +3,7 @@ import Link from "next/link";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Neo-Toolkit | Tool Digital Kece",
+  title: "Toolkit | Tool Digital Kece",
   description: "Kumpulan tool simpel, cepet, dan berani.",
 };
 
