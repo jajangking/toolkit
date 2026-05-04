@@ -5,8 +5,19 @@ import { Providers } from "@/components/Providers";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Toolkit | Tool Digital Kece",
-  description: "Kumpulan tool simpel, cepet, dan berani.",
+  title: {
+    default: "Toolkit | Tool Digital Serba Bisa",
+    template: "%s | Toolkit"
+  },
+  description: "Kumpulan tool digital gratis: Barcode & QR Generator, Scanner Kamera, dan Smart Notepad dengan hitung otomatis. Sat-set, simpel, dan berani!",
+  keywords: ["tool digital", "barcode generator", "qr code generator", "scanner qr", "notepad otomatis", "hitung otomatis", "toolkit indonesia"],
+  authors: [{ name: "Jajangking" }],
+  openGraph: {
+    type: "website",
+    locale: "id_ID",
+    url: "https://toolkit-tau-topaz.vercel.app/",
+    siteName: "Toolkit",
+  },
 };
 
 export default function RootLayout({
