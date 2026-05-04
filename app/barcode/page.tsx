@@ -28,9 +28,15 @@ export default function BarcodePage() {
   useEffect(() => {
     const savedText = localStorage.getItem("last_barcode_text");
     const savedFormat = localStorage.getItem("last_barcode_format") as BarcodeFormat;
-    if (savedText) setText(savedText);
-    if (savedFormat) setFormat(savedFormat);
-    setIsLoaded(true);
+    
+    const loadData = () => {
+      if (savedText) setText(savedText);
+      if (savedFormat) setFormat(savedFormat);
+      setIsLoaded(true);
+    };
+
+    const timer = setTimeout(loadData, 0);
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -39,9 +45,6 @@ export default function BarcodePage() {
       localStorage.setItem("last_barcode_format", format);
     }
   }, [text, format, isLoaded]);
-
-  const [errorKey, setErrorKey] = useState(0);
-  useEffect(() => { setErrorKey(prev => prev + 1); }, [text, format]);
 
   const isValidEANChecksum = (code: string) => {
     if (!/^\d+$/.test(code)) return false;
@@ -112,7 +115,7 @@ export default function BarcodePage() {
               <div onClick={() => isValidInput && setZoomTarget("barcode")} className={`liquid-glass neo-border neo-shadow p-4 md:p-8 flex flex-col items-center justify-between group transition-transform ${isValidInput ? 'bg-lime-400/20 cursor-zoom-in hover:-translate-y-1' : 'bg-rose-400/20 cursor-not-allowed'}`}>
                 <h3 className="w-full text-xs md:text-xl font-black uppercase tracking-tighter mb-4 md:mb-6 dark:text-white text-black transition-colors overflow-hidden text-ellipsis whitespace-nowrap">{format}</h3>
                 <div className="bg-white p-2 md:p-4 neo-border neo-shadow w-full flex items-center justify-center overflow-hidden h-full min-h-[80px] md:min-h-[120px] transition-all">
-                  <BarcodeErrorBoundary key={errorKey} fallback={<p className="text-[10px] font-black text-rose-500">ERROR</p>}>
+                  <BarcodeErrorBoundary key={`${text}-${format}`} fallback={<p className="text-[10px] font-black text-rose-500">ERROR</p>}>
                     {isValidInput ? (
                       <div className="group-hover:-rotate-1 transition-transform flex items-center justify-center w-full overflow-hidden">
                         <Barcode value={text} format={format} width={getDynamicWidth(false)} height={60} fontSize={10} font="Space Grotesk" background="#ffffff" />
@@ -171,7 +174,7 @@ export default function BarcodePage() {
                 <div className="p-2"><QRCode value={text} size={400} style={{ height: "auto", maxWidth: "100%", width: "min(400px, 80vw)" }} /></div>
               ) : (
                 <div className="py-10 px-2 w-full flex items-center justify-center overflow-hidden">
-                  <BarcodeErrorBoundary key={errorKey} fallback={<p className="text-xl font-black text-rose-500">FORMAT ERROR!</p>}>
+                  <BarcodeErrorBoundary key={`${text}-${format}`} fallback={<p className="text-xl font-black text-rose-500">FORMAT ERROR!</p>}>
                     {isValidInput && (
                       <div className="w-full flex justify-center">
                          {/* Barcode dipaksa mengecil kalo kepanjangan biar tetep bisa di-scan */}

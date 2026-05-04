@@ -41,7 +41,7 @@ export default function ScannerPage() {
           setIsScanning(false);
           scanner.clear().catch(err => console.error(err));
         },
-        (error) => {
+        () => {
           // Gak usah log error terus-terusan biar console bersih
         }
       );

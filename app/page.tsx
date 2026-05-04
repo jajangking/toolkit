@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AdSpace from "@/components/AdSpace";
 
 export default async function Home() {
   const tools = [
@@ -21,6 +22,15 @@ export default async function Home() {
       color: "bg-purple-400",
     },
     {
+      title: "Smart Notepad",
+      description: "Catat & itung otomatis (10 + 20 jadi 30).",
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="square" strokeLinejoin="miter"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      ),
+      href: "/notepad",
+      color: "bg-orange-400",
+    },
+    {
       title: "Password Gen",
       description: "Bikin password kuat biar akun lo aman.",
       icon: (
@@ -37,13 +47,16 @@ export default async function Home() {
       <div className="max-w-7xl mx-auto">
         
         {/* HERO SECTION */}
-        <div className="mb-12 md:mb-20 text-center lg:text-left animate-slide-up">
-          <h2 className="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-none mb-4 dark:text-white text-black">
-            SIMPLE.<br/>CEPET.<br/>BERANI.
-          </h2>
-          <p className="text-xl md:text-2xl font-bold uppercase italic dark:text-gray-400 text-gray-600">
-            Kumpulan tool digital biar kerjaan lo makin sat-set.
-          </p>
+        <div className="mb-12 md:mb-20 text-center lg:text-left animate-slide-up flex flex-col lg:flex-row justify-between items-center lg:items-end gap-8">
+          <div>
+            <h2 className="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-none mb-4 dark:text-white text-black">
+              SIMPLE.<br/>CEPET.<br/>BERANI.
+            </h2>
+            <p className="text-xl md:text-2xl font-bold uppercase italic dark:text-gray-400 text-gray-600">
+              Kumpulan tool digital biar kerjaan lo makin sat-set.
+            </p>
+          </div>
+          <AdSpace className="w-full lg:w-72 shrink-0 animate-scale-in" height="h-32 lg:h-48" label="ADS" />
         </div>
 
         {/* TOOL GRID */}
@@ -79,6 +92,11 @@ export default async function Home() {
               </div>
             </Link>
           ))}
+          
+          {/* ADS CARD DALEM GRID */}
+          <div className="animate-slide-up opacity-0 [animation-fill-mode:forwards]" style={{ animationDelay: `${(tools.length + 2) * 0.1}s` }}>
+            <AdSpace className="h-full" height="min-h-[200px]" />
+          </div>
         </div>
       </div>
     </div>
