@@ -18,12 +18,11 @@ export default function RootLayout({
     <html lang="id">
       <head>
         <meta name="google-adsense-account" content="ca-pub-5291389837836056" />
-        <Script
+        <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5291389837836056"
           crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
+        ></script>
       </head>
       <body className="min-h-screen flex flex-col relative transition-colors duration-300">
         <Providers>
