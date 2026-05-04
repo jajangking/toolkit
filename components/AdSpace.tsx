@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 interface AdSpaceProps {
   label?: string;
@@ -19,9 +19,17 @@ export default function AdSpace({
   className = "", 
   height = "h-32" 
 }: AdSpaceProps) {
+  const initialized = useRef(false);
+
   useEffect(() => {
+    // Cek biar gak dipanggil 2 kali (React Strict Mode / Re-render)
+    if (initialized.current) return;
+
     try {
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
+      if (typeof window !== "undefined" && window.adsbygoogle) {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+        initialized.current = true;
+      }
     } catch (e) {
       console.error("Adsbygoogle error:", e);
     }
