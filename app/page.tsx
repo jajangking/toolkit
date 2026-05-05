@@ -60,7 +60,7 @@ export default async function Home() {
         </div>
 
         {/* TOOL GRID */}
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-20">
           {tools.map((tool, index) => (
             <Link 
               key={index} 
@@ -92,11 +92,27 @@ export default async function Home() {
               </div>
             </Link>
           ))}
-          
-          {/* ADS CARD DALEM GRID */}
-          <div className="animate-slide-up opacity-0 [animation-fill-mode:forwards]" style={{ animationDelay: `${(tools.length + 2) * 0.1}s` }}>
-            <AdSpace className="h-full" height="min-h-[200px]" />
+        </div>
+
+        {/* INFO SECTION TO INCREASE CONTENT VALUE */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20 animate-slide-up opacity-0 [animation-fill-mode:forwards]" style={{ animationDelay: '0.8s' }}>
+          <div className="liquid-glass neo-border neo-shadow p-8 bg-white/5">
+            <h4 className="text-2xl font-black uppercase tracking-tighter mb-4 dark:text-white text-black">Kenapa Toolkit?</h4>
+            <p className="text-lg font-medium dark:text-gray-300 text-gray-700 leading-relaxed">
+              Kami bikin alat-alat ini buat bantu lo nyelesain tugas kecil yang sering bikin repot. Gak perlu install aplikasi berat, tinggal buka browser, semua beres dalam hitungan detik.
+            </p>
           </div>
+          <div className="liquid-glass neo-border neo-shadow p-8 bg-white/5">
+            <h4 className="text-2xl font-black uppercase tracking-tighter mb-4 dark:text-white text-black">Privasi Utama</h4>
+            <p className="text-lg font-medium dark:text-gray-300 text-gray-700 leading-relaxed">
+              Data lo aman. Kita gak simpan teks barcode atau hasil scan lo di server kita. Khusus Notepad, sinkronisasi langsung ke Google Drive lo sendiri.
+            </p>
+          </div>
+        </div>
+
+        {/* SAFE AD SPACE BELOW CONTENT */}
+        <div className="animate-slide-up opacity-0 [animation-fill-mode:forwards]" style={{ animationDelay: '1s' }}>
+          <AdSpace className="w-full" height="h-32 md:h-48" label="ADS" />
         </div>
       </div>
     </div>

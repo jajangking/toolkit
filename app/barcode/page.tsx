@@ -3,6 +3,8 @@
 import { useState, useEffect, useMemo, Component, ErrorInfo, ReactNode } from "react";
 import QRCode from "react-qr-code";
 import Barcode from "react-barcode";
+import AdSpace from "@/components/AdSpace";
+import Link from "next/link";
 
 type BarcodeFormat = "CODE128" | "CODE39" | "EAN13" | "EAN8" | "UPC" | "ITF14" | "pharmacode";
 
@@ -161,6 +163,37 @@ export default function BarcodePage() {
             </div>
             {text && <button onClick={() => setText("")} className="text-[10px] font-black uppercase underline decoration-2 hover:text-rose-500 transition-colors">Hapus Semua</button>}
           </div>
+        </div>
+
+        {/* EDUCATIONAL CONTENT TO INCREASE VALUE */}
+        <div className="order-3 mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 animate-slide-up opacity-0 [animation-fill-mode:forwards] [animation-delay:0.4s]">
+          <div className="liquid-glass neo-border neo-shadow p-6 bg-white/5">
+            <h4 className="text-xl font-black uppercase tracking-tighter mb-4 dark:text-white text-black">Tentang Format Barcode</h4>
+            <ul className="space-y-3 text-sm font-medium dark:text-gray-300 text-gray-700">
+              <li><strong className="text-black dark:text-white">CODE 128:</strong> Paling populer, bisa simpan huruf, angka, and simbol.</li>
+              <li><strong className="text-black dark:text-white">EAN-13:</strong> Standar internasional buat barang retail/toko.</li>
+              <li><strong className="text-black dark:text-white">QR Code:</strong> Bisa simpan ribuan karakter, cocok buat URL atau kartu nama digital.</li>
+            </ul>
+          </div>
+          <div className="liquid-glass neo-border neo-shadow p-6 bg-white/5">
+            <h4 className="text-xl font-black uppercase tracking-tighter mb-4 dark:text-white text-black">Tips Scan</h4>
+            <p className="text-sm font-medium dark:text-gray-300 text-gray-700 leading-relaxed">
+              Pastiin kontras warna cukup (hitam di atas putih paling bagus). Kalo barcode kepanjangan, kita otomatis kecilin ukurannya biar tetep muat di layar hp lo saat di-scan.
+            </p>
+          </div>
+        </div>
+
+        {/* CONDITIONAL AD SPACE */}
+        {text && (
+          <div className="order-4 mt-12 animate-scale-in">
+            <AdSpace className="w-full" height="h-32 md:h-48" />
+          </div>
+        )}
+
+        <div className="order-5 mt-12 text-center">
+          <Link href="/" className="inline-block text-sm font-black uppercase underline decoration-2 hover:text-cyan-500 transition-colors">
+            Balik ke Beranda
+          </Link>
         </div>
       </div>
 

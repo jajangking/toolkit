@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Html5QrcodeScanner } from "html5-qrcode";
 import Link from "next/link";
+import AdSpace from "@/components/AdSpace";
 
 export default function ScannerPage() {
   const [scanResult, setScanResult] = useState<string | null>(null);
@@ -129,6 +130,32 @@ export default function ScannerPage() {
                 Buka Link
               </a>
             )}
+          </div>
+        )}
+
+        {/* INSTRUCTIONS / CONTENT VALUE */}
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 animate-slide-up">
+          <div className="liquid-glass neo-border neo-shadow p-6 bg-white/5">
+            <h4 className="text-xl font-black uppercase tracking-tighter mb-4 dark:text-white text-black">Cara Pakai Scanner</h4>
+            <p className="text-sm font-medium dark:text-gray-300 text-gray-700 leading-relaxed">
+              1. Klik tombol "Mulai Scan" di atas.<br/>
+              2. Izinin akses kamera pas browser minta.<br/>
+              3. Arahin kotak scanner ke Barcode atau QR Code.<br/>
+              4. Hasil bakal otomatis muncul di bawah.
+            </p>
+          </div>
+          <div className="liquid-glass neo-border neo-shadow p-6 bg-white/5">
+            <h4 className="text-xl font-black uppercase tracking-tighter mb-4 dark:text-white text-black">Privasi Kamera</h4>
+            <p className="text-sm font-medium dark:text-gray-300 text-gray-700 leading-relaxed">
+              Tenang aja, kita gak rekam atau simpan video dari kamera lo. Semua proses scanning dilakuin langsung di browser (client-side), jadi data lo gak pernah dikirim ke server kita.
+            </p>
+          </div>
+        </div>
+
+        {/* CONDITIONAL AD SPACE - Only show when result is present to avoid "no content" policy */}
+        {scanResult && (
+          <div className="mt-12 animate-scale-in">
+            <AdSpace className="w-full" height="h-32 md:h-48" />
           </div>
         )}
 

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useSession, signIn, signOut } from "next-auth/react";
+import AdSpace from "@/components/AdSpace";
 
 interface Note {
   id: string;
@@ -256,6 +257,29 @@ export default function NotepadPage() {
             })
           )}
         </div>
+
+        {/* FEATURE DETAILS / CONTENT VALUE */}
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 animate-slide-up">
+          <div className="liquid-glass neo-border neo-shadow p-6 bg-white/5">
+            <h4 className="text-xl font-black uppercase tracking-tighter mb-4 dark:text-white text-black">Fitur Smart Calc</h4>
+            <p className="text-sm font-medium dark:text-gray-300 text-gray-700 leading-relaxed">
+              Lo bisa tulis operasi matematika langsung (misal: 10 + 20 * 2) dan aplikasi bakal hitung otomatis. Cocok buat lo yang lagi rekap belanjaan atau jualan.
+            </p>
+          </div>
+          <div className="liquid-glass neo-border neo-shadow p-6 bg-white/5">
+            <h4 className="text-xl font-black uppercase tracking-tighter mb-4 dark:text-white text-black">Sync Google Sheets</h4>
+            <p className="text-sm font-medium dark:text-gray-300 text-gray-700 leading-relaxed">
+              Login pake akun Google lo biar semua catatan ini bisa masuk ke spreadsheet "Toolkit Smart Notes" di Drive lo secara otomatis. Gak perlu ribet salin satu-satu.
+            </p>
+          </div>
+        </div>
+
+        {/* CONDITIONAL AD SPACE - Only show when there are notes */}
+        {notes.length > 0 && (
+          <div className="mt-12 animate-scale-in">
+            <AdSpace className="w-full" height="h-32 md:h-48" />
+          </div>
+        )}
 
         <div className="mt-12 text-center">
           <Link href="/" className="inline-block text-sm font-black uppercase underline decoration-2 hover:text-orange-500 transition-colors">
