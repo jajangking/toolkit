@@ -9,6 +9,15 @@ export interface Tip {
   content: string;
   date: string;
   author: string;
+  solvesId?: string; // ID of the article this post solves
+  reactions?: {
+    like: number;
+    love: number;
+    haha: number;
+    wow: number;
+    sad: number;
+    angry: number;
+  };
 }
 
 const dataFilePath = path.join(process.cwd(), 'data/tips.json');

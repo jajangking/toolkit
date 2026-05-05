@@ -13,7 +13,7 @@ export async function POST(req: Request) {
 
   try {
     const data = await req.json();
-    const { title, excerpt, content } = data;
+    const { title, excerpt, content, solvesId } = data;
 
     if (!title || !excerpt || !content) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
@@ -30,9 +30,12 @@ export async function POST(req: Request) {
       title,
       excerpt,
       content,
+      solvesId,
       date: new Date().toISOString().split('T')[0],
       author: session?.user?.name || "Admin",
+      reactions: { like: 0, love: 0, haha: 0, wow: 0, sad: 0, angry: 0 },
     };
+
 
     saveTip(newTip);
 
