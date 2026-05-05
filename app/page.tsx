@@ -22,6 +22,15 @@ export default async function Home() {
       color: "bg-purple-400",
     },
     {
+      title: "Tips & Pengalaman",
+      description: "Cara gue beresin masalah hidup yang mungkin berguna buat lo.",
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="square" strokeLinejoin="miter"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      ),
+      href: "/tips",
+      color: "bg-yellow-400",
+    },
+    {
       title: "Smart Notepad",
       description: "Catat & itung otomatis (10 + 20 jadi 30).",
       icon: (
