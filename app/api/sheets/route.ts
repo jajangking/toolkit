@@ -7,19 +7,22 @@ export async function POST(req: Request) {
   const session = await getServerSession(authOptions);
 
   if (!session || !(session as any).accessToken) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    console.error("Sheets Sync Error: No session or access token found.");
+    return NextResponse.json({ error: "Unauthorized: Please login again." }, { status: 401 });
   }
 
   const { notes } = await req.json();
+  const accessToken = (session as any).accessToken;
 
   const auth = new google.auth.OAuth2();
-  auth.setCredentials({ access_token: (session as any).accessToken });
+  auth.setCredentials({ access_token: accessToken });
 
   const sheets = google.sheets({ version: "v4", auth });
   const drive = google.drive({ version: "v3", auth });
 
   try {
-    // 1. Cari file "Toolkit Smart Notes" di Drive
+    // Test auth first
+    await drive.about.get({ fields: "user" });
     const response = await drive.files.list({
       q: "name='Toolkit Smart Notes' and mimeType='application/vnd.google-apps.spreadsheet' and trashed=false",
       fields: "files(id, name)",

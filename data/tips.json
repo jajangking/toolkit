@@ -6,6 +6,47 @@
     "excerpt": "Burnout itu nyata, tapi bukan berarti lo harus nyerah. Ini cara gue tetep waras.",
     "content": "Burnout sering banget dateng pas kerjaan lagi numpuk. Gue pribadi biasanya pake teknik Pomodoro tapi yang versi lebih santai. Jangan lupa minum air putih dan stretching tiap 30 menit. Fokus ke progres kecil, bukan cuma hasil akhir.",
     "date": "2026-05-01",
-    "author": "Admin"
+    "author": "Admin",
+    "reactions": { "like": 12, "love": 5, "haha": 13, "wow": 2, "sad": 0, "angry": 0 }
+  },
+  {
+    "id": "2",
+    "slug": "tips-productivity-developer",
+    "title": "5 Tips Productivity Biar Gak Keburu Tua di Depan Layar",
+    "excerpt": "Jadi dev itu capek, tapi kalo tau triknya bisa lebih santuy.",
+    "content": "Pertama, stop multitasking. Fokus satu tugas sampe kelar. Kedua, pake keyboard shortcut sebanyak mungkin. Ketiga, otomatisasi tugas yang repetitif pake script simpel. Keempat, istirahat tiap 1 jam. Kelima, tidur yang cukup!",
+    "date": "2026-05-02",
+    "author": "Admin",
+    "reactions": { "like": 25, "love": 10, "haha": 2, "wow": 8, "sad": 0, "angry": 0 }
+  },
+  {
+    "id": "3",
+    "slug": "manfaat-generator-barcode",
+    "title": "Kenapa Bisnis Kecil Butuh Barcode Sendiri?",
+    "excerpt": "Gak cuma buat toko gede, barcode itu kunci buat scale up bisnis lo.",
+    "content": "Barcode ngebantu banget buat tracking stok barang secara akurat. Gak ada lagi salah hitung manual. Selain itu, pas checkout jadi lebih cepet dan kelihatan lebih profesional di mata pelanggan. Lo bisa pake generator kita buat mulai!",
+    "date": "2026-05-03",
+    "author": "Admin",
+    "reactions": { "like": 40, "love": 15, "haha": 0, "wow": 5, "sad": 0, "angry": 0 }
+  },
+  {
+    "id": "4",
+    "slug": "pentingnya-kebijakan-privasi",
+    "title": "Kenapa Web Lo Wajib Punya Halaman Privacy Policy?",
+    "excerpt": "Bukan cuma formalitas, ini soal kepercayaan user dan syarat AdSense.",
+    "content": "Privacy Policy itu bentuk transparansi lo ke user tentang data apa yang lo ambil. Google AdSense juga mewajibkan ini karena mereka pake cookie buat iklan. Kalo gak ada, web lo bakal susah dapet approval iklan atau layanan pihak ketiga lainnya.",
+    "date": "2026-05-04",
+    "author": "Admin",
+    "reactions": { "like": 18, "love": 8, "haha": 1, "wow": 12, "sad": 0, "angry": 0 }
+  },
+  {
+    "id": "5",
+    "slug": "belajar-koding-dari-nol",
+    "title": "Belajar Koding dari Nol di Tahun 2026? Masih Worth It!",
+    "excerpt": "Banyak yang bilang AI bakal gantiin dev, tapi realitanya nggak gitu.",
+    "content": "AI emang pinter, tapi dia butuh orang yang paham logika buat arahinnya. Belajar koding sekarang justru lebih enak karena dibantu AI. Fokus ke fundamental, problem solving, dan cara kerja sistem. Skill ini bakal tetep mahal harganya.",
+    "date": "2026-05-05",
+    "author": "Admin",
+    "reactions": { "like": 55, "love": 30, "haha": 0, "wow": 20, "sad": 0, "angry": 0 }
   }
 ]

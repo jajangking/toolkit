@@ -6,8 +6,8 @@ export const metadata = {
   description: "Catatan admin mengenai how to fix problem dalam hidup yang mungkin berguna bagi orang lain.",
 };
 
-export default function TipsPage() {
-  const tips = getTips();
+export default async function TipsPage() {
+  const tips = await getTips();
 
   return (
     <div className="py-6 md:py-12 px-4 sm:px-6 lg:px-8">

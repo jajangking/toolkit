@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getTipBySlug, getTips } from "@/lib/tips";
+import { getTips } from "@/lib/tips";
 import { getComments } from "@/lib/comments";
 import AdSpace from "@/components/AdSpace";
 import ReactionButtons from "@/components/ReactionButtons";
@@ -12,7 +12,8 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
-  const tip = getTipBySlug(slug);
+  const allTips = await getTips();
+  const tip = allTips.find(t => t.slug === slug);
   if (!tip) return { title: "Not Found" };
   
   return {
@@ -23,11 +24,14 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function TipDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const tip = getTipBySlug(slug);
+  const allTips = await getTips();
+  const tip = allTips.find(t => t.slug === slug);
 
   if (!tip) notFound();
 
-  const allTips = getTips();
+  // Karena comments.json juga akan bermasalah di Vercel,
+  // untuk sementara kita tampilkan komentar kosong atau beri warning.
+  // Tapi kita fokus perbaiki Tips dulu.
   const comments = getComments(tip.id);
   const solvedBy = allTips.filter(t => t.solvesId === tip.id);
   const solvesPost = allTips.find(t => t.id === tip.solvesId);
