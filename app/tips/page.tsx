@@ -74,6 +74,11 @@ export default function TipsPage() {
                   <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tighter mb-4 group-hover:underline decoration-4 dark:text-white text-black">
                     {tip.title}
                   </h2>
+                  {tip.content?.trim().toLowerCase().startsWith('<!doctype') || tip.content?.trim().toLowerCase().startsWith('<html') ? (
+                    <span className="inline-block mb-3 px-2 py-0.5 bg-yellow-400 text-black text-[10px] font-black uppercase tracking-widest neo-border">
+                      Custom HTML Design
+                    </span>
+                  ) : null}
                   <p className="text-lg font-medium dark:text-gray-300 text-gray-700 leading-tight">
                     {tip.excerpt}
                   </p>

@@ -83,10 +83,32 @@ export default function TipDetailPage() {
           </div>
 
           <div className="liquid-glass neo-border neo-shadow p-8 md:p-12 bg-white/5 mb-8">
-            <div
-              className="prose prose-xl dark:prose-invert max-w-none font-medium leading-relaxed dark:text-gray-300 text-gray-800"
-              dangerouslySetInnerHTML={{ __html: tip.content }}
-            />
+            {tip.content.trim().toLowerCase().startsWith('<!doctype') || tip.content.trim().toLowerCase().startsWith('<html') ? (
+              // Full HTML page → render di iframe agar CSS tidak bentrok
+              <div>
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="px-2 py-0.5 bg-yellow-400 text-black text-xs font-black uppercase neo-border">Custom HTML</span>
+                  <span className="text-xs text-gray-500">Artikel ini menggunakan desain HTML kustom</span>
+                </div>
+                <iframe
+                  srcDoc={tip.content}
+                  className="w-full neo-border"
+                  style={{ minHeight: '600px', height: 'auto' }}
+                  onLoad={(e) => {
+                    const iframe = e.currentTarget;
+                    iframe.style.height = iframe.contentDocument?.body?.scrollHeight + 'px';
+                  }}
+                  sandbox="allow-same-origin allow-scripts"
+                  title={tip.title}
+                />
+              </div>
+            ) : (
+              // Fragment HTML biasa → render langsung
+              <div
+                className="prose prose-xl dark:prose-invert max-w-none font-medium leading-relaxed dark:text-gray-300 text-gray-800"
+                dangerouslySetInnerHTML={{ __html: tip.content }}
+              />
+            )}
           </div>
 
           {(tip.problem || tip.solution || tip.result) && (

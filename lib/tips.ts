@@ -55,6 +55,8 @@ export function parseReactions(jsonStr: string) {
 }
 
 export function tipFromRow(row: any[]): Tip {
+  // Reactions selalu kolom terakhir (JSON bisa mengandung koma, shift CSV)
+  const reactionsStr = row[row.length - 1] || '';
   return {
     id: row[0] || '',
     slug: row[1] || '',
@@ -72,6 +74,6 @@ export function tipFromRow(row: any[]): Tip {
     approvedBy: row[13] || '',
     approvedAt: row[14] || '',
     rejectionReason: row[15] || '',
-    reactions: parseReactions(row[16]),
+    reactions: parseReactions(reactionsStr),
   };
 }
