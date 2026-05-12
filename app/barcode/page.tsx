@@ -165,21 +165,101 @@ export default function BarcodePage() {
           </div>
         </div>
 
-        {/* EDUCATIONAL CONTENT TO INCREASE VALUE */}
-        <div className="order-3 mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 animate-slide-up opacity-0 [animation-fill-mode:forwards] [animation-delay:0.4s]">
-          <div className="liquid-glass neo-border neo-shadow p-6 bg-white/5">
-            <h4 className="text-xl font-black uppercase tracking-tighter mb-4 dark:text-white text-black">Tentang Format Barcode</h4>
-            <ul className="space-y-3 text-sm font-medium dark:text-gray-300 text-gray-700">
-              <li><strong className="text-black dark:text-white">CODE 128:</strong> Paling populer, bisa simpan huruf, angka, and simbol.</li>
-              <li><strong className="text-black dark:text-white">EAN-13:</strong> Standar internasional buat barang retail/toko.</li>
-              <li><strong className="text-black dark:text-white">QR Code:</strong> Bisa simpan ribuan karakter, cocok buat URL atau kartu nama digital.</li>
-            </ul>
+        {/* EXPANDED EDUCATIONAL CONTENT */}
+        <div className="order-3 mt-12 space-y-8 animate-slide-up opacity-0 [animation-fill-mode:forwards] [animation-delay:0.4s]">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="liquid-glass neo-border neo-shadow p-6 bg-white/5">
+              <h4 className="text-xl font-black uppercase tracking-tighter mb-4 dark:text-white text-black">Tentang Format Barcode</h4>
+              <ul className="space-y-3 text-sm font-medium dark:text-gray-300 text-gray-700">
+                <li><strong className="text-black dark:text-white">CODE 128:</strong> Paling populer, bisa simpan huruf, angka, dan simbol. Cocok buat inventory dan shipping.</li>
+                <li><strong className="text-black dark:text-white">EAN-13:</strong> Standar internasional buat barang retail/toko. Wajib punya checksum digit yang valid.</li>
+                <li><strong className="text-black dark:text-white">QR Code:</strong> Bisa simpan ribuan karakter, cocok buat URL, vCard, atau WiFi credentials.</li>
+                <li><strong className="text-black dark:text-white">UPC:</strong> Standar Amerika buat produk retail, mirip EAN tapi 12 digit.</li>
+              </ul>
+            </div>
+            <div className="liquid-glass neo-border neo-shadow p-6 bg-white/5">
+              <h4 className="text-xl font-black uppercase tracking-tighter mb-4 dark:text-white text-black">Tips Scan & Print</h4>
+              <p className="text-sm font-medium dark:text-gray-300 text-gray-700 leading-relaxed mb-3">
+                Pastiin kontras warna cukup (hitam di atas putih paling bagus). Kalo barcode kepanjangan, kita otomatis kecilin ukurannya biar tetep muat di layar hp lo saat di-scan.
+              </p>
+              <p className="text-xs font-medium dark:text-gray-400 text-gray-600 leading-relaxed">
+                <strong>Print Quality:</strong> Minimal 300 DPI buat hasil terbaik. Hindari print di kertas glossy yang bisa bikin pantulan cahaya.
+              </p>
+            </div>
           </div>
+
+          {/* USE CASES */}
+          <div className="liquid-glass neo-border neo-shadow p-8 bg-gradient-to-br from-cyan-400/10 to-blue-400/10">
+            <h4 className="text-2xl font-black uppercase tracking-tighter mb-6 dark:text-white text-black">Kapan Lo Butuh Barcode Generator?</h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              <div className="bg-white/10 p-4 neo-border">
+                <div className="text-3xl mb-2">🏪</div>
+                <h5 className="text-sm font-black uppercase mb-2 dark:text-white text-black">Toko & UMKM</h5>
+                <p className="text-xs font-medium dark:text-gray-300 text-gray-700">
+                  Bikin barcode produk buat sistem kasir atau inventory. Cetak dan tempel di packaging.
+                </p>
+              </div>
+              <div className="bg-white/10 p-4 neo-border">
+                <div className="text-3xl mb-2">📲</div>
+                <h5 className="text-sm font-black uppercase mb-2 dark:text-white text-black">Share Link</h5>
+                <p className="text-xs font-medium dark:text-gray-300 text-gray-700">
+                  Bikin QR code buat website, Instagram, atau WhatsApp lo. Tempel di brosur atau kartu nama.
+                </p>
+              </div>
+              <div className="bg-white/10 p-4 neo-border">
+                <div className="text-3xl mb-2">🎉</div>
+                <h5 className="text-sm font-black uppercase mb-2 dark:text-white text-black">Event & Undangan</h5>
+                <p className="text-xs font-medium dark:text-gray-300 text-gray-700">
+                  Bikin QR buat link RSVP, lokasi Google Maps, atau form registrasi acara lo.
+                </p>
+              </div>
+              <div className="bg-white/10 p-4 neo-border">
+                <div className="text-3xl mb-2">📦</div>
+                <h5 className="text-sm font-black uppercase mb-2 dark:text-white text-black">Shipping Label</h5>
+                <p className="text-xs font-medium dark:text-gray-300 text-gray-700">
+                  Generate barcode buat nomor resi atau tracking number paket kiriman.
+                </p>
+              </div>
+              <div className="bg-white/10 p-4 neo-border">
+                <div className="text-3xl mb-2">🎫</div>
+                <h5 className="text-sm font-black uppercase mb-2 dark:text-white text-black">Tiket Digital</h5>
+                <p className="text-xs font-medium dark:text-gray-300 text-gray-700">
+                  Bikin QR code unik buat tiket konser, seminar, atau workshop lo.
+                </p>
+              </div>
+              <div className="bg-white/10 p-4 neo-border">
+                <div className="text-3xl mb-2">📱</div>
+                <h5 className="text-sm font-black uppercase mb-2 dark:text-white text-black">WiFi QR</h5>
+                <p className="text-xs font-medium dark:text-gray-300 text-gray-700">
+                  Bikin QR WiFi biar tamu bisa connect tanpa ngetik password panjang.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* TECHNICAL GUIDE */}
           <div className="liquid-glass neo-border neo-shadow p-6 bg-white/5">
-            <h4 className="text-xl font-black uppercase tracking-tighter mb-4 dark:text-white text-black">Tips Scan</h4>
-            <p className="text-sm font-medium dark:text-gray-300 text-gray-700 leading-relaxed">
-              Pastiin kontras warna cukup (hitam di atas putih paling bagus). Kalo barcode kepanjangan, kita otomatis kecilin ukurannya biar tetep muat di layar hp lo saat di-scan.
-            </p>
+            <h4 className="text-xl font-black uppercase tracking-tighter mb-4 dark:text-white text-black">Panduan Teknis</h4>
+            <div className="space-y-4 text-sm font-medium dark:text-gray-300 text-gray-700">
+              <div>
+                <h5 className="font-black text-black dark:text-white mb-2">Ukuran Minimum</h5>
+                <p className="text-xs leading-relaxed">
+                  Barcode: minimal 1 inch (2.5cm) lebar. QR Code: minimal 2x2 cm buat scan jarak dekat, 5x5 cm buat jarak jauh.
+                </p>
+              </div>
+              <div>
+                <h5 className="font-black text-black dark:text-white mb-2">Quiet Zone</h5>
+                <p className="text-xs leading-relaxed">
+                  Kasih ruang kosong minimal 0.25 inch di kiri-kanan barcode. Jangan sampai ada teks atau gambar yang terlalu deket.
+                </p>
+              </div>
+              <div>
+                <h5 className="font-black text-black dark:text-white mb-2">Testing</h5>
+                <p className="text-xs leading-relaxed">
+                  Selalu test barcode lo pake scanner atau kamera HP sebelum cetak massal. Pastikan bisa kebaca dari berbagai jarak dan sudut.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 

@@ -258,19 +258,112 @@ export default function NotepadPage() {
           )}
         </div>
 
-        {/* FEATURE DETAILS / CONTENT VALUE */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 animate-slide-up">
-          <div className="liquid-glass neo-border neo-shadow p-6 bg-white/5">
-            <h4 className="text-xl font-black uppercase tracking-tighter mb-4 dark:text-white text-black">Fitur Smart Calc</h4>
-            <p className="text-sm font-medium dark:text-gray-300 text-gray-700 leading-relaxed">
-              Lo bisa tulis operasi matematika langsung (misal: 10 + 20 * 2) dan aplikasi bakal hitung otomatis. Cocok buat lo yang lagi rekap belanjaan atau jualan.
-            </p>
+        {/* EXPANDED FEATURE DETAILS */}
+        <div className="mt-12 space-y-8 animate-slide-up">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="liquid-glass neo-border neo-shadow p-6 bg-white/5">
+              <h4 className="text-xl font-black uppercase tracking-tighter mb-4 dark:text-white text-black">Fitur Smart Calc</h4>
+              <p className="text-sm font-medium dark:text-gray-300 text-gray-700 leading-relaxed mb-3">
+                Lo bisa tulis operasi matematika langsung (misal: 10 + 20 * 2) dan aplikasi bakal hitung otomatis. Cocok buat lo yang lagi rekap belanjaan atau jualan.
+              </p>
+              <p className="text-xs font-medium dark:text-gray-400 text-gray-600 leading-relaxed">
+                <strong>Operasi yang didukung:</strong> Penjumlahan (+), Pengurangan (-), Perkalian (*), Pembagian (/). Bisa juga hitung total dari list angka yang ditulis ke bawah.
+              </p>
+            </div>
+            <div className="liquid-glass neo-border neo-shadow p-6 bg-white/5">
+              <h4 className="text-xl font-black uppercase tracking-tighter mb-4 dark:text-white text-black">Sync Google Sheets</h4>
+              <p className="text-sm font-medium dark:text-gray-300 text-gray-700 leading-relaxed mb-3">
+                Login pake akun Google lo biar semua catatan ini bisa masuk ke spreadsheet "Toolkit Smart Notes" di Drive lo secara otomatis. Gak perlu ribet salin satu-satu.
+              </p>
+              <p className="text-xs font-medium dark:text-gray-400 text-gray-600 leading-relaxed">
+                Data tersimpan di Google Drive lo sendiri, bukan di server kami. Lo punya kontrol penuh dan bisa akses dari mana aja.
+              </p>
+            </div>
           </div>
+
+          {/* USE CASES */}
+          <div className="liquid-glass neo-border neo-shadow p-8 bg-gradient-to-br from-orange-400/10 to-yellow-400/10">
+            <h4 className="text-2xl font-black uppercase tracking-tighter mb-6 dark:text-white text-black">Kapan Lo Butuh Smart Notepad?</h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              <div className="bg-white/10 p-4 neo-border">
+                <div className="text-3xl mb-2">🛒</div>
+                <h5 className="text-sm font-black uppercase mb-2 dark:text-white text-black">Belanja Bulanan</h5>
+                <p className="text-xs font-medium dark:text-gray-300 text-gray-700">
+                  Catat harga barang belanjaan, otomatis dijumlahin. Gak perlu bawa kalkulator lagi.
+                </p>
+              </div>
+              <div className="bg-white/10 p-4 neo-border">
+                <div className="text-3xl mb-2">💰</div>
+                <h5 className="text-sm font-black uppercase mb-2 dark:text-white text-black">Patungan Temen</h5>
+                <p className="text-xs font-medium dark:text-gray-300 text-gray-700">
+                  Hitung total bill dan bagi rata. Tulis nominal tiap orang, langsung ketauan totalnya.
+                </p>
+              </div>
+              <div className="bg-white/10 p-4 neo-border">
+                <div className="text-3xl mb-2">📊</div>
+                <h5 className="text-sm font-black uppercase mb-2 dark:text-white text-black">Laporan Keuangan</h5>
+                <p className="text-xs font-medium dark:text-gray-300 text-gray-700">
+                  Catat pemasukan dan pengeluaran harian. Sync ke Sheets buat analisis lebih lanjut.
+                </p>
+              </div>
+              <div className="bg-white/10 p-4 neo-border">
+                <div className="text-3xl mb-2">🏪</div>
+                <h5 className="text-sm font-black uppercase mb-2 dark:text-white text-black">Jualan Online</h5>
+                <p className="text-xs font-medium dark:text-gray-300 text-gray-700">
+                  Hitung total orderan customer dengan cepat. Cocok buat reseller dan UMKM.
+                </p>
+              </div>
+              <div className="bg-white/10 p-4 neo-border">
+                <div className="text-3xl mb-2">✈️</div>
+                <h5 className="text-sm font-black uppercase mb-2 dark:text-white text-black">Budget Liburan</h5>
+                <p className="text-xs font-medium dark:text-gray-300 text-gray-700">
+                  Catat estimasi biaya hotel, transport, makan. Ketauan total budget yang dibutuhin.
+                </p>
+              </div>
+              <div className="bg-white/10 p-4 neo-border">
+                <div className="text-3xl mb-2">📝</div>
+                <h5 className="text-sm font-black uppercase mb-2 dark:text-white text-black">Catatan Cepat</h5>
+                <p className="text-xs font-medium dark:text-gray-300 text-gray-700">
+                  Tulis apapun yang perlu lo inget. Tersimpan di browser, gak bakal hilang.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* HOW TO USE */}
           <div className="liquid-glass neo-border neo-shadow p-6 bg-white/5">
-            <h4 className="text-xl font-black uppercase tracking-tighter mb-4 dark:text-white text-black">Sync Google Sheets</h4>
-            <p className="text-sm font-medium dark:text-gray-300 text-gray-700 leading-relaxed">
-              Login pake akun Google lo biar semua catatan ini bisa masuk ke spreadsheet "Toolkit Smart Notes" di Drive lo secara otomatis. Gak perlu ribet salin satu-satu.
-            </p>
+            <h4 className="text-xl font-black uppercase tracking-tighter mb-4 dark:text-white text-black">Cara Pakai Smart Calc</h4>
+            <div className="space-y-4 text-sm font-medium dark:text-gray-300 text-gray-700">
+              <div>
+                <h5 className="font-black text-black dark:text-white mb-2">Operasi Matematika</h5>
+                <p className="text-xs leading-relaxed mb-2">
+                  Tulis langsung di catatan: <code className="bg-black/10 dark:bg-white/10 px-2 py-1 font-mono">10 + 20 * 2</code> atau <code className="bg-black/10 dark:bg-white/10 px-2 py-1 font-mono">500 - 150</code>
+                </p>
+                <p className="text-xs leading-relaxed text-gray-500 dark:text-gray-400">
+                  Hasil bakal muncul otomatis di bawah catatan lo dengan highlight biru.
+                </p>
+              </div>
+              <div>
+                <h5 className="font-black text-black dark:text-white mb-2">Total List Angka</h5>
+                <p className="text-xs leading-relaxed mb-2">
+                  Tulis angka ke bawah (satu baris satu angka), contoh:<br/>
+                  <code className="bg-black/10 dark:bg-white/10 px-2 py-1 font-mono block mt-1">
+                    Recehan: 500.000<br/>
+                    Bon: 756.000<br/>
+                    Lain-lain: 120.000
+                  </code>
+                </p>
+                <p className="text-xs leading-relaxed text-gray-500 dark:text-gray-400">
+                  Total semua angka bakal dijumlahin otomatis dengan highlight hijau.
+                </p>
+              </div>
+              <div>
+                <h5 className="font-black text-black dark:text-white mb-2">Format Angka</h5>
+                <p className="text-xs leading-relaxed">
+                  Bisa pake titik sebagai pemisah ribuan (500.000) atau langsung angka biasa (500000). Hasil otomatis diformat ke Rupiah.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 

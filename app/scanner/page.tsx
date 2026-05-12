@@ -133,22 +133,97 @@ export default function ScannerPage() {
           </div>
         )}
 
-        {/* INSTRUCTIONS / CONTENT VALUE */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 animate-slide-up">
-          <div className="liquid-glass neo-border neo-shadow p-6 bg-white/5">
-            <h4 className="text-xl font-black uppercase tracking-tighter mb-4 dark:text-white text-black">Cara Pakai Scanner</h4>
-            <p className="text-sm font-medium dark:text-gray-300 text-gray-700 leading-relaxed">
-              1. Klik tombol "Mulai Scan" di atas.<br/>
-              2. Izinin akses kamera pas browser minta.<br/>
-              3. Arahin kotak scanner ke Barcode atau QR Code.<br/>
-              4. Hasil bakal otomatis muncul di bawah.
-            </p>
+        {/* EXPANDED EDUCATIONAL CONTENT */}
+        <div className="mt-12 space-y-8 animate-slide-up">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="liquid-glass neo-border neo-shadow p-6 bg-white/5">
+              <h4 className="text-xl font-black uppercase tracking-tighter mb-4 dark:text-white text-black">Cara Pakai Scanner</h4>
+              <p className="text-sm font-medium dark:text-gray-300 text-gray-700 leading-relaxed mb-3">
+                1. Klik tombol "Mulai Scan" di atas.<br/>
+                2. Izinin akses kamera pas browser minta.<br/>
+                3. Arahin kotak scanner ke Barcode atau QR Code.<br/>
+                4. Hasil bakal otomatis muncul di bawah.
+              </p>
+              <p className="text-xs font-medium dark:text-gray-400 text-gray-600 leading-relaxed">
+                <strong>Tips:</strong> Pastikan pencahayaan cukup dan kamera fokus ke kode. Jarak ideal sekitar 10-20cm dari layar atau kertas.
+              </p>
+            </div>
+            <div className="liquid-glass neo-border neo-shadow p-6 bg-white/5">
+              <h4 className="text-xl font-black uppercase tracking-tighter mb-4 dark:text-white text-black">Privasi Kamera</h4>
+              <p className="text-sm font-medium dark:text-gray-300 text-gray-700 leading-relaxed mb-3">
+                Tenang aja, kita gak rekam atau simpan video dari kamera lo. Semua proses scanning dilakuin langsung di browser (client-side), jadi data lo gak pernah dikirim ke server kita.
+              </p>
+              <p className="text-xs font-medium dark:text-gray-400 text-gray-600 leading-relaxed">
+                Akses kamera hanya aktif saat lo scan, dan langsung dimatikan begitu hasil keluar. Zero data collection.
+              </p>
+            </div>
           </div>
+
+          {/* USE CASES */}
+          <div className="liquid-glass neo-border neo-shadow p-8 bg-gradient-to-br from-purple-400/10 to-pink-400/10">
+            <h4 className="text-2xl font-black uppercase tracking-tighter mb-6 dark:text-white text-black">Kapan Lo Butuh Scanner?</h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              <div className="bg-white/10 p-4 neo-border">
+                <div className="text-3xl mb-2">📱</div>
+                <h5 className="text-sm font-black uppercase mb-2 dark:text-white text-black">Menu Digital</h5>
+                <p className="text-xs font-medium dark:text-gray-300 text-gray-700">
+                  Scan QR menu di restoran atau kafe tanpa perlu pegang menu fisik.
+                </p>
+              </div>
+              <div className="bg-white/10 p-4 neo-border">
+                <div className="text-3xl mb-2">🎫</div>
+                <h5 className="text-sm font-black uppercase mb-2 dark:text-white text-black">Tiket & Voucher</h5>
+                <p className="text-xs font-medium dark:text-gray-300 text-gray-700">
+                  Ambil kode promo atau link download dari poster atau brosur.
+                </p>
+              </div>
+              <div className="bg-white/10 p-4 neo-border">
+                <div className="text-3xl mb-2">📦</div>
+                <h5 className="text-sm font-black uppercase mb-2 dark:text-white text-black">Tracking Paket</h5>
+                <p className="text-xs font-medium dark:text-gray-300 text-gray-700">
+                  Scan barcode resi pengiriman buat cek status paket lo.
+                </p>
+              </div>
+              <div className="bg-white/10 p-4 neo-border">
+                <div className="text-3xl mb-2">💳</div>
+                <h5 className="text-sm font-black uppercase mb-2 dark:text-white text-black">Pembayaran</h5>
+                <p className="text-xs font-medium dark:text-gray-300 text-gray-700">
+                  Scan QR payment dari merchant atau temen buat transfer cepat.
+                </p>
+              </div>
+              <div className="bg-white/10 p-4 neo-border">
+                <div className="text-3xl mb-2">📚</div>
+                <h5 className="text-sm font-black uppercase mb-2 dark:text-white text-black">Info Produk</h5>
+                <p className="text-xs font-medium dark:text-gray-300 text-gray-700">
+                  Scan barcode produk buat cek harga atau review online.
+                </p>
+              </div>
+              <div className="bg-white/10 p-4 neo-border">
+                <div className="text-3xl mb-2">🔗</div>
+                <h5 className="text-sm font-black uppercase mb-2 dark:text-white text-black">Link Cepat</h5>
+                <p className="text-xs font-medium dark:text-gray-300 text-gray-700">
+                  Buka website atau download file tanpa perlu ngetik URL panjang.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* TECHNICAL INFO */}
           <div className="liquid-glass neo-border neo-shadow p-6 bg-white/5">
-            <h4 className="text-xl font-black uppercase tracking-tighter mb-4 dark:text-white text-black">Privasi Kamera</h4>
-            <p className="text-sm font-medium dark:text-gray-300 text-gray-700 leading-relaxed">
-              Tenang aja, kita gak rekam atau simpan video dari kamera lo. Semua proses scanning dilakuin langsung di browser (client-side), jadi data lo gak pernah dikirim ke server kita.
+            <h4 className="text-xl font-black uppercase tracking-tighter mb-4 dark:text-white text-black">Format yang Didukung</h4>
+            <p className="text-sm font-medium dark:text-gray-300 text-gray-700 leading-relaxed mb-3">
+              Scanner kami support berbagai format barcode dan QR code populer, termasuk:
             </p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs font-bold">
+              <div className="bg-white/10 px-3 py-2 neo-border text-center">QR Code</div>
+              <div className="bg-white/10 px-3 py-2 neo-border text-center">Code 128</div>
+              <div className="bg-white/10 px-3 py-2 neo-border text-center">EAN-13</div>
+              <div className="bg-white/10 px-3 py-2 neo-border text-center">UPC-A</div>
+              <div className="bg-white/10 px-3 py-2 neo-border text-center">Code 39</div>
+              <div className="bg-white/10 px-3 py-2 neo-border text-center">EAN-8</div>
+              <div className="bg-white/10 px-3 py-2 neo-border text-center">ITF</div>
+              <div className="bg-white/10 px-3 py-2 neo-border text-center">Data Matrix</div>
+            </div>
           </div>
         </div>
 

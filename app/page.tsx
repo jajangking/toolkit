@@ -56,16 +56,13 @@ export default async function Home() {
       <div className="max-w-7xl mx-auto">
         
         {/* HERO SECTION */}
-        <div className="mb-12 md:mb-20 text-center lg:text-left animate-slide-up flex flex-col lg:flex-row justify-between items-center lg:items-end gap-8">
-          <div>
-            <h2 className="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-none mb-4 dark:text-white text-black">
-              SIMPLE.<br/>CEPET.<br/>BERANI.
-            </h2>
-            <p className="text-xl md:text-2xl font-bold uppercase italic dark:text-gray-400 text-gray-600">
-              Kumpulan tool digital biar kerjaan lo makin sat-set.
-            </p>
-          </div>
-          <AdSpace className="w-full lg:w-72 shrink-0 animate-scale-in" height="h-32 lg:h-48" label="ADS" />
+        <div className="mb-12 md:mb-20 text-center lg:text-left animate-slide-up">
+          <h2 className="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-none mb-4 dark:text-white text-black">
+            SIMPLE.<br/>CEPET.<br/>BERANI.
+          </h2>
+          <p className="text-xl md:text-2xl font-bold uppercase italic dark:text-gray-400 text-gray-600">
+            Kumpulan tool digital biar kerjaan lo makin sat-set.
+          </p>
         </div>
 
         {/* TOOL GRID */}
@@ -103,19 +100,89 @@ export default async function Home() {
           ))}
         </div>
 
-        {/* INFO SECTION TO INCREASE CONTENT VALUE */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20 animate-slide-up opacity-0 [animation-fill-mode:forwards]" style={{ animationDelay: '0.8s' }}>
-          <div className="liquid-glass neo-border neo-shadow p-8 bg-white/5">
-            <h4 className="text-2xl font-black uppercase tracking-tighter mb-4 dark:text-white text-black">Kenapa Toolkit?</h4>
-            <p className="text-lg font-medium dark:text-gray-300 text-gray-700 leading-relaxed">
-              Kami bikin alat-alat ini buat bantu lo nyelesain tugas kecil yang sering bikin repot. Gak perlu install aplikasi berat, tinggal buka browser, semua beres dalam hitungan detik.
-            </p>
+        {/* EXPANDED CONTENT VALUE SECTION */}
+        <div className="mb-20 space-y-12 animate-slide-up opacity-0 [animation-fill-mode:forwards]" style={{ animationDelay: '0.8s' }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div className="liquid-glass neo-border neo-shadow p-8 bg-white/5">
+              <h4 className="text-2xl font-black uppercase tracking-tighter mb-4 dark:text-white text-black">Kenapa Toolkit?</h4>
+              <p className="text-lg font-medium dark:text-gray-300 text-gray-700 leading-relaxed mb-4">
+                Kami bikin alat-alat ini buat bantu lo nyelesain tugas kecil yang sering bikin repot. Gak perlu install aplikasi berat, tinggal buka browser, semua beres dalam hitungan detik.
+              </p>
+              <p className="text-base font-medium dark:text-gray-400 text-gray-600 leading-relaxed">
+                Setiap tool dirancang dengan prinsip minimalis tapi powerful. Lo bisa akses dari HP, tablet, atau komputer tanpa perlu registrasi atau bayar apapun.
+              </p>
+            </div>
+            <div className="liquid-glass neo-border neo-shadow p-8 bg-white/5">
+              <h4 className="text-2xl font-black uppercase tracking-tighter mb-4 dark:text-white text-black">Privasi Utama</h4>
+              <p className="text-lg font-medium dark:text-gray-300 text-gray-700 leading-relaxed mb-4">
+                Data lo aman. Kita gak simpan teks barcode atau hasil scan lo di server kita. Khusus Notepad, sinkronisasi langsung ke Google Drive lo sendiri.
+              </p>
+              <p className="text-base font-medium dark:text-gray-400 text-gray-600 leading-relaxed">
+                Semua proses berjalan di browser lo (client-side processing), jadi data sensitif gak pernah melewati server kami. Lo punya kontrol penuh atas informasi lo.
+              </p>
+            </div>
           </div>
-          <div className="liquid-glass neo-border neo-shadow p-8 bg-white/5">
-            <h4 className="text-2xl font-black uppercase tracking-tighter mb-4 dark:text-white text-black">Privasi Utama</h4>
-            <p className="text-lg font-medium dark:text-gray-300 text-gray-700 leading-relaxed">
-              Data lo aman. Kita gak simpan teks barcode atau hasil scan lo di server kita. Khusus Notepad, sinkronisasi langsung ke Google Drive lo sendiri.
-            </p>
+
+          {/* USE CASES SECTION */}
+          <div className="liquid-glass neo-border neo-shadow p-8 md:p-12 bg-gradient-to-br from-yellow-400/10 to-cyan-400/10">
+            <h3 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-8 dark:text-white text-black">Kapan Lo Butuh Toolkit?</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-white/10 p-6 neo-border">
+                <div className="text-4xl mb-3">📦</div>
+                <h5 className="text-lg font-black uppercase mb-2 dark:text-white text-black">Bisnis & Jualan</h5>
+                <p className="text-sm font-medium dark:text-gray-300 text-gray-700">
+                  Bikin barcode produk, scan resi paket, atau hitung total belanjaan pake Smart Notepad. Cocok buat UMKM dan reseller online.
+                </p>
+              </div>
+              <div className="bg-white/10 p-6 neo-border">
+                <div className="text-4xl mb-3">🎓</div>
+                <h5 className="text-lg font-black uppercase mb-2 dark:text-white text-black">Sekolah & Kampus</h5>
+                <p className="text-sm font-medium dark:text-gray-300 text-gray-700">
+                  Scan QR absensi, bikin QR buat tugas kelompok, atau catat rumus matematika yang otomatis dihitung. Hemat waktu buat hal penting.
+                </p>
+              </div>
+              <div className="bg-white/10 p-6 neo-border">
+                <div className="text-4xl mb-3">🏠</div>
+                <h5 className="text-lg font-black uppercase mb-2 dark:text-white text-black">Kehidupan Sehari-hari</h5>
+                <p className="text-sm font-medium dark:text-gray-300 text-gray-700">
+                  Scan menu restoran, bikin QR WiFi rumah, atau catat pengeluaran bulanan. Tool sederhana yang bikin hidup lebih praktis.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* HOW IT WORKS */}
+          <div className="liquid-glass neo-border neo-shadow p-8 md:p-12 bg-white/5">
+            <h3 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-8 dark:text-white text-black">Cara Kerja Tool Kami</h3>
+            <div className="space-y-6">
+              <div className="flex gap-4 items-start">
+                <div className="bg-cyan-400 w-12 h-12 flex items-center justify-center neo-border neo-shadow shrink-0 font-black text-2xl">1</div>
+                <div>
+                  <h5 className="text-xl font-black uppercase mb-2 dark:text-white text-black">Pilih Tool yang Lo Butuhin</h5>
+                  <p className="text-base font-medium dark:text-gray-300 text-gray-700">
+                    Klik salah satu tool di atas sesuai kebutuhan. Mau bikin barcode? Scan QR? Atau catat sesuatu? Semua ada di sini.
+                  </p>
+                </div>
+              </div>
+              <div className="flex gap-4 items-start">
+                <div className="bg-purple-400 w-12 h-12 flex items-center justify-center neo-border neo-shadow shrink-0 font-black text-2xl">2</div>
+                <div>
+                  <h5 className="text-xl font-black uppercase mb-2 dark:text-white text-black">Masukin Data atau Scan</h5>
+                  <p className="text-base font-medium dark:text-gray-300 text-gray-700">
+                    Ketik teks yang mau dijadiin barcode, atau nyalain kamera buat scan. Prosesnya cepet dan gak ribet.
+                  </p>
+                </div>
+              </div>
+              <div className="flex gap-4 items-start">
+                <div className="bg-yellow-400 w-12 h-12 flex items-center justify-center neo-border neo-shadow shrink-0 font-black text-2xl">3</div>
+                <div>
+                  <h5 className="text-xl font-black uppercase mb-2 dark:text-white text-black">Dapetin Hasil Instan</h5>
+                  <p className="text-base font-medium dark:text-gray-300 text-gray-700">
+                    Barcode langsung muncul dan siap di-download. Hasil scan langsung bisa disalin. Notepad otomatis hitung angka. Sat-set!
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
