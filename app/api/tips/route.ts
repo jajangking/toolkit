@@ -6,46 +6,42 @@ import { authOptions } from "@/lib/auth";
 export async function POST(req: Request) {
   const session = await getServerSession(authOptions);
 
-  const adminEmail = process.env.ADMIN_EMAIL;
-  const userEmail = session?.user?.email;
-
-  if (!session || !userEmail || userEmail.toLowerCase() !== adminEmail?.toLowerCase()) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session || !session.user?.email) {
+    return NextResponse.json({ error: "Unauthorized - Please login with Google" }, { status: 401 });
   }
+
+  const spreadsheetId = process.env.TIPS_SPREADSHEET_ID;
+  if (!spreadsheetId) {
+    return NextResponse.json({ error: "TIPS_SPREADSHEET_ID belum diset" }, { status: 500 });
+  }
+
+  const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
+  const userEmail = session.user.email;
+  const isAdmin = userEmail.toLowerCase() === adminEmail?.toLowerCase();
 
   try {
     const data = await req.json();
-    const { title, excerpt, content, solvesId } = data;
+    const { title, excerpt, content, problem, solution, result, solvesId } = data;
 
     const accessToken = (session as any).accessToken;
     const auth = new google.auth.OAuth2();
     auth.setCredentials({ access_token: accessToken });
 
     const sheets = google.sheets({ version: "v4", auth });
-    const drive = google.drive({ version: "v3", auth });
 
-    // 1. Cari Spreadsheet "Toolkit Blog Tips"
-    const search = await drive.files.list({
-      q: "name='Toolkit Blog Tips' and mimeType='application/vnd.google-apps.spreadsheet' and trashed=false",
-      fields: "files(id, name)",
+    // Pastikan header ada
+    const headerCheck = await sheets.spreadsheets.values.get({
+      spreadsheetId,
+      range: "Sheet1!A1:Q1",
     });
 
-    let spreadsheetId = search.data.files?.[0]?.id;
-
-    // 2. Bikin kalo belum ada
-    if (!spreadsheetId) {
-      const ss = await sheets.spreadsheets.create({
-        requestBody: { properties: { title: "Toolkit Blog Tips" } },
-      });
-      spreadsheetId = ss.data.spreadsheetId!;
-      
-      // Header: A-I
+    if (!headerCheck.data.values || headerCheck.data.values.length === 0) {
       await sheets.spreadsheets.values.update({
         spreadsheetId,
-        range: "Sheet1!A1:I1",
+        range: "Sheet1!A1:Q1",
         valueInputOption: "RAW",
         requestBody: {
-          values: [["ID", "Slug", "Title", "Excerpt", "Content", "Date", "Author", "SolvesId", "Reactions"]],
+          values: [["ID", "Slug", "Title", "Excerpt", "Content", "Problem", "Solution", "Result", "Date", "Author", "AuthorEmail", "SolvesId", "Status", "ApprovedBy", "ApprovedAt", "RejectionReason", "Reactions"]],
         },
       });
     }
@@ -55,17 +51,31 @@ export async function POST(req: Request) {
     const date = new Date().toISOString().split('T')[0];
     const reactions = JSON.stringify({ like: 0, love: 0, haha: 0, wow: 0, sad: 0, angry: 0 });
 
-    // 3. Simpan Row Baru (di paling bawah)
+    const status = isAdmin ? 'approved' : 'pending';
+    const approvedBy = isAdmin ? session.user.name || userEmail : '';
+    const approvedAt = isAdmin ? new Date().toISOString() : '';
+
+    // Auto excerpt dari konten jika tidak ada
+    const finalExcerpt = excerpt || content.replace(/<[^>]*>/g, '').substring(0, 150) + '...';
+
     await sheets.spreadsheets.values.append({
       spreadsheetId,
       range: "Sheet1!A2",
       valueInputOption: "RAW",
       requestBody: {
-        values: [[id, slug, title, excerpt, content, date, session.user?.name || "Admin", solvesId || "", reactions]],
+        values: [[
+          id, slug, title, finalExcerpt, content,
+          problem || '', solution || '', result || '',
+          date, session.user.name || "User", userEmail,
+          solvesId || "", status, approvedBy, approvedAt, '', reactions
+        ]],
       },
     });
 
-    return NextResponse.json({ success: true, slug, spreadsheetId });
+    return NextResponse.json({
+      success: true, slug, spreadsheetId, status,
+      message: isAdmin ? 'Artikel berhasil dipublish!' : 'Artikel dikirim, menunggu persetujuan admin'
+    });
   } catch (error: any) {
     console.error("Save Tip Error:", error);
     return NextResponse.json({ error: error.message }, { status: 500 });

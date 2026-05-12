@@ -6,9 +6,17 @@ export interface Tip {
   title: string;
   excerpt: string;
   content: string;
+  problem?: string;
+  solution?: string;
+  result?: string;
   date: string;
   author: string;
+  authorEmail: string;
   solvesId?: string;
+  status: 'draft' | 'pending' | 'approved' | 'rejected';
+  approvedBy?: string;
+  approvedAt?: string;
+  rejectionReason?: string;
   reactions?: {
     like: number;
     love: number;
@@ -19,8 +27,9 @@ export interface Tip {
   };
 }
 
-// Kolom di Google Sheets:
-// A: ID, B: Slug, C: Title, D: Excerpt, E: Content, F: Date, G: Author, H: SolvesId, I: Reactions (JSON string)
+// Kolom di Google Sheets (Updated):
+// A: ID, B: Slug, C: Title, D: Excerpt, E: Content, F: Problem, G: Solution, H: Result
+// I: Date, J: Author, K: AuthorEmail, L: SolvesId, M: Status, N: ApprovedBy, O: ApprovedAt, P: RejectionReason, Q: Reactions (JSON string)
 
 export async function getTips(): Promise<Tip[]> {
   // Untuk publik, kita akan pakai fetch CSV atau API Key jika ada.
@@ -52,9 +61,17 @@ export function tipFromRow(row: any[]): Tip {
     title: row[2] || '',
     excerpt: row[3] || '',
     content: row[4] || '',
-    date: row[5] || '',
-    author: row[6] || '',
-    solvesId: row[7] || '',
-    reactions: parseReactions(row[8]),
+    problem: row[5] || '',
+    solution: row[6] || '',
+    result: row[7] || '',
+    date: row[8] || '',
+    author: row[9] || '',
+    authorEmail: row[10] || '',
+    solvesId: row[11] || '',
+    status: (row[12] || 'draft') as 'draft' | 'pending' | 'approved' | 'rejected',
+    approvedBy: row[13] || '',
+    approvedAt: row[14] || '',
+    rejectionReason: row[15] || '',
+    reactions: parseReactions(row[16]),
   };
 }

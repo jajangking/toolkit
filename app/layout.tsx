@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 import { Providers } from "@/components/Providers";
+import AuthButton from "@/components/AuthButton";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -53,6 +54,7 @@ export default function RootLayout({
                 <Link href="/tips" className="px-3 py-1.5 md:px-4 md:py-2 font-bold text-black hover:bg-black hover:text-white transition-colors neo-border bg-yellow-400 neo-shadow text-sm">Tips</Link>
                 <Link href="/barcode" className="px-3 py-1.5 md:px-4 md:py-2 font-bold text-black hover:bg-black hover:text-white transition-colors neo-border bg-cyan-400 neo-shadow text-sm">Barcode</Link>
                 <Link href="/scanner" className="px-3 py-1.5 md:px-4 md:py-2 font-bold text-black hover:bg-black hover:text-white transition-colors neo-border bg-purple-400 neo-shadow text-sm">Scanner</Link>
+                <AuthButton />
               </div>
             </nav>
           </header>

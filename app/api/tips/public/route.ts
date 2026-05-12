@@ -1,31 +1,59 @@
 import { NextResponse } from "next/server";
-import { google } from "googleapis";
 import { tipFromRow } from "@/lib/tips";
 
-export async function GET() {
-  // Untuk publik, kita butuh cara baca tanpa session user.
-  // Cara paling gampang buat demo ini adalah pakai API Key atau Service Account.
-  // Tapi karena kita mau "Gratis" dan "Simpel", kita sarankan user set Spreadsheet ke "Public (View Only)".
-  
-  const spreadsheetId = process.env.TIPS_SPREADSHEET_ID;
-  const apiKey = process.env.GOOGLE_API_KEY;
+const SPREADSHEET_ID = process.env.TIPS_SPREADSHEET_ID;
+const CSV_URL = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/export?format=csv&gid=0`;
 
-  if (!spreadsheetId || !apiKey) {
-    return NextResponse.json({ 
-      error: "Konfigurasi belum lengkap. Butuh TIPS_SPREADSHEET_ID dan GOOGLE_API_KEY.",
-      tips: [] 
-    });
+function parseCSVLine(line: string): string[] {
+  const result: string[] = [];
+  let current = '';
+  let inQuotes = false;
+
+  for (let i = 0; i < line.length; i++) {
+    const char = line[i];
+    if (char === '"') {
+      if (inQuotes && line[i + 1] === '"') {
+        current += '"';
+        i++;
+      } else {
+        inQuotes = !inQuotes;
+      }
+    } else if (char === ',' && !inQuotes) {
+      result.push(current);
+      current = '';
+    } else {
+      current += char;
+    }
   }
+  result.push(current);
+  return result;
+}
 
+export async function GET() {
   try {
-    const sheets = google.sheets({ version: "v4", auth: apiKey });
-    const response = await sheets.spreadsheets.values.get({
-      spreadsheetId,
-      range: "Sheet1!A2:I100", // Ambil 100 tips terbaru
+    if (!SPREADSHEET_ID) {
+      return NextResponse.json({ tips: [], error: "TIPS_SPREADSHEET_ID belum diset" });
+    }
+
+    const res = await fetch(CSV_URL, {
+      redirect: 'follow',
+      next: { revalidate: 60 }, // cache 1 menit
     });
 
-    const rows = response.data.values || [];
-    const tips = rows.map(tipFromRow).reverse(); // Terbaru di atas
+    if (!res.ok) {
+      return NextResponse.json({ tips: [], error: "Gagal fetch spreadsheet" });
+    }
+
+    const csv = await res.text();
+    const lines = csv.split('\n').filter(l => l.trim());
+
+    // Skip header row (index 0)
+    const rows = lines.slice(1).map(line => parseCSVLine(line));
+
+    const tips = rows
+      .map(tipFromRow)
+      .filter(tip => tip.status === 'approved' && tip.id)
+      .reverse();
 
     return NextResponse.json({ tips });
   } catch (error: any) {

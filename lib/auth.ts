@@ -20,18 +20,20 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, account }) {
       if (account) {
         token.accessToken = account.access_token;
+        token.refreshToken = account.refresh_token;
       }
       return token;
     },
     async session({ session, token }: { session: any, token: any }) {
       session.accessToken = token.accessToken;
+      session.refreshToken = token.refreshToken;
       return session;
     },
   },
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
-    signIn: '/notepad', // Balik ke notepad kalo error
-    error: '/notepad',
+    signIn: '/login',
+    error: '/login',
   },
   debug: process.env.NODE_ENV === 'development',
 };
