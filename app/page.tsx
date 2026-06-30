@@ -1,8 +1,9 @@
 import Link from "next/link";
 import AdSpace from "@/components/AdSpace";
+import type { ReactNode } from "react";
 
 export default async function Home() {
-  const tools = [
+  const tools: { title: string; description: string; icon: ReactNode; href: string; color: string; status?: string }[] = [
     {
       title: "Barcode & QR",
       description: "Bikin QR & Barcode instan buat teks atau URL.",
@@ -40,14 +41,22 @@ export default async function Home() {
       color: "bg-orange-400",
     },
     {
-      title: "Password Gen",
-      description: "Bikin password kuat biar akun lo aman.",
+      title: "Watchface",
+      description: "Generate watchface kustom buat smartwatch Android (format ClockSkin).",
       icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="square" strokeLinejoin="miter"><rect width="18" height="11" x="3" y="11" rx="0"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="square" strokeLinejoin="miter"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="M4.93 19.07l1.41-1.41"/><path d="M17.66 6.34l1.41-1.41"/></svg>
       ),
-      href: "#",
-      color: "bg-lime-400",
-      status: "SABAR",
+      href: "/watchface-generator",
+      color: "bg-green-400",
+    },
+    {
+      title: "CamPlay",
+      description: "Proyektor interaktif — bola virtual mantul kena objek fisik. HP kamera, tembok layar.",
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="square" strokeLinejoin="miter"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/><circle cx="12" cy="13" r="1.5" fill="currentColor"/><path d="M5 12l3 3 5-8 3 3h5"/></svg>
+      ),
+      href: "/interactive-camera",
+      color: "bg-fuchsia-400",
     },
   ];
 
