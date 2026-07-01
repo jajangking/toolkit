@@ -44,7 +44,7 @@ export default function RichTextEditor({ content, onChange, placeholder }: RichT
   // Sync HTML → Visual saat switch ke visual mode
   const switchToVisual = () => {
     if (editor && htmlValue !== editor.getHTML()) {
-      editor.commands.setContent(htmlValue, false);
+      editor.commands.setContent(htmlValue, {});
     }
     setMode('visual');
   };
