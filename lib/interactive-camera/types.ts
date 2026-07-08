@@ -26,7 +26,7 @@ export interface ProcessingConfig {
 
 export const PROC_W = 320;
 export const PROC_H = 240;
-export const BG_LERP = 0.005;
+export const BG_LERP = 0.02;
 export const MAX_DT = 0.05;
 
 export const BALL_COLORS = [

@@ -58,6 +58,15 @@ export default async function Home() {
       href: "/interactive-camera",
       color: "bg-fuchsia-400",
     },
+    {
+      title: "Rawat Motor",
+      description: "Catat riwayat servis motor: oli, rantai, rem, ban, & biaya perawatan biar motor lo awet.",
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="square" strokeLinejoin="miter"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/><path d="M5 3l-2 4 4 2"/><path d="M19 3l2 4-4 2"/><path d="M3 12h3"/><path d="M18 12h3"/><path d="M12 3v3"/><path d="M12 18v3"/></svg>
+      ),
+      href: "/rawat-motor",
+      color: "bg-lime-400",
+    },
   ];
 
   return (

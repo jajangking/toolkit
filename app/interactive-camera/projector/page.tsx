@@ -27,6 +27,31 @@ function toGrayscale(img: ImageData, out: Uint8Array) {
     out[i / 4] = (d[i] * 0.299 + d[i + 1] * 0.587 + d[i + 2] * 0.114) | 0;
 }
 
+// 3x3 box blur (separable-ish) to suppress sensor/MJPEG noise
+function blurGray(src: Uint8Array, dst: Uint8Array, w: number, h: number) {
+  const tmp = new Uint8Array(w * h);
+  for (let y = 0; y < h; y++)
+    for (let x = 0; x < w; x++) {
+      let s = 0, n = 0;
+      for (let k = -1; k <= 1; k++) {
+        const xx = x + k;
+        if (xx < 0 || xx >= w) continue;
+        s += src[y * w + xx]; n++;
+      }
+      tmp[y * w + x] = s / n;
+    }
+  for (let y = 0; y < h; y++)
+    for (let x = 0; x < w; x++) {
+      let s = 0, n = 0;
+      for (let k = -1; k <= 1; k++) {
+        const yy = y + k;
+        if (yy < 0 || yy >= h) continue;
+        s += tmp[yy * w + x]; n++;
+      }
+      dst[y * w + x] = s / n;
+    }
+}
+
 function subtractBackground(
   current: Uint8Array,
   bg: Uint8Array,
@@ -212,9 +237,20 @@ export default function ProjectorPage() {
   const [running, setRunning] = useState(false);
   const [showConnect, setShowConnect] = useState(true);
 
-  const [mode, setMode] = useState<"ip" | "phone">("ip");
-  const [room, setRoom] = useState<string>("");
+  const getInitialRoom = () => {
+    if (typeof window === "undefined") return "";
+    return new URLSearchParams(window.location.search).get("room") || "";
+  };
+  const initialRoom = getInitialRoom();
+
+  const [mode, setMode] = useState<"ip" | "phone">(initialRoom ? "phone" : "ip");
+  const [room, setRoom] = useState<string>(initialRoom);
   const [connectTab, setConnectTab] = useState<"ip" | "phone">("ip");
+  const [roomId] = useState<string>(() =>
+    Math.random().toString(36).slice(2, 6).toUpperCase(),
+  );
+  const [showConnect, setShowConnect] = useState(!initialRoom);
+  const [connected, setConnected] = useState(!!initialRoom);
 
   const grayRef = useRef(new Uint8Array(PROC_W * PROC_H));
   const maskRef = useRef(new Uint8Array(PROC_W * PROC_H));
@@ -222,18 +258,6 @@ export default function ProjectorPage() {
 
   const canvasW = useRef(640);
   const canvasH = useRef(480);
-
-  // Detect phone mode from URL param ?room=XXXX
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const r = params.get("room");
-    if (r) {
-      setMode("phone");
-      setRoom(r);
-      setShowConnect(false);
-      setConnected(true);
-    }
-  }, []);
 
   const createBall = (id: number, W: number, H: number) => ({
     id,
@@ -334,6 +358,10 @@ export default function ProjectorPage() {
 
       const img = pctx.getImageData(0, 0, PROC_W, PROC_H);
       toGrayscale(img, grayRef.current);
+      // blur in place using a temp buffer (rawGray holds original)
+      const rawGray = new Uint8Array(PROC_W * PROC_H);
+      rawGray.set(grayRef.current);
+      blurGray(rawGray, grayRef.current, PROC_W, PROC_H);
 
       // 2. Background subtraction
       let rects: Rect[] = [];
@@ -343,7 +371,7 @@ export default function ProjectorPage() {
           grayRef.current,
           bg,
           maskRef.current,
-          30,
+          40,
           PROC_W * PROC_H,
         );
         updateBackground(
@@ -354,7 +382,15 @@ export default function ProjectorPage() {
           PROC_W * PROC_H,
         );
         ccLabel(maskRef.current, labelsRef.current, PROC_W, PROC_H);
-        rects = findBoxes(labelsRef.current, PROC_W, PROC_H, 50);
+        const procRects = findBoxes(labelsRef.current, PROC_W, PROC_H, 120);
+        // Scale processing-space rects (PROC_W x PROC_H) to display space (W x H)
+        const sx = W / PROC_W, sy = H / PROC_H;
+        rects = procRects.map((r) => ({
+          x: r.x * sx,
+          y: r.y * sy,
+          width: r.width * sx,
+          height: r.height * sy,
+        }));
 
         if (running) {
           const dt = Math.min((time - lastTimeRef.current) / 1000, MAX_DT);
@@ -390,7 +426,7 @@ export default function ProjectorPage() {
         document.documentElement.requestFullscreen();
       } catch {}
       try {
-        (screen as any).orientation?.lock?.("landscape");
+        (screen.orientation as { lock?: (o: string) => Promise<void> } | undefined)?.lock?.("landscape");
       } catch {}
     };
     document.addEventListener("click", goFull, { once: true });
@@ -417,9 +453,7 @@ export default function ProjectorPage() {
   }, []);
 
   if (showConnect) {
-    const roomId = Math.random().toString(36).slice(2, 6).toUpperCase();
     const baseUrl = typeof window !== "undefined" ? window.location.origin : "";
-    const projectorUrl = `${baseUrl}/interactive-camera/projector?room=${roomId}`;
 
     return (
       <div
@@ -507,7 +541,12 @@ export default function ProjectorPage() {
             <input
               value={url}
               onChange={(e) => setUrl(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && setConnected(true) && setShowConnect(false)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  setConnected(true);
+                  setShowConnect(false);
+                }
+              }}
               placeholder="http://192.168.1.5:8080/video"
               style={{
                 width: "100%",
